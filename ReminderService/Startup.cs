@@ -22,6 +22,9 @@ namespace ReminderService
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+            services.AddSingleton(new ReminderContext(Configuration));
+            services.AddScoped<IReminderRepository, ReminderRepository>();
+            services.AddScoped<IReminderService, Services.ReminderService>();
             //provide options for Database Context to Register Dependencies
             //Register all dependencies here
         }

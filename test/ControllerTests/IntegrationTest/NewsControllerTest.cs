@@ -33,7 +33,7 @@ namespace Test.ControllerTests.IntegrationTest
             // Deserialize and examine results.
             Assert.Equal(HttpStatusCode.Created, httpResponse.StatusCode);
             var stringResponse = await httpResponse.Content.ReadAsStringAsync();
-            Assert.Equal(102, Convert.ToInt32(stringResponse));
+            Assert.Equal(101, Convert.ToInt32(stringResponse));
         }
 
         [Fact, TestPriority(2)]
@@ -50,14 +50,14 @@ namespace Test.ControllerTests.IntegrationTest
             var stringResponse = await httpResponse.Content.ReadAsStringAsync();
             var lstnews= JsonConvert.DeserializeObject<List<News>>(stringResponse);
             Assert.NotNull(lstnews);
-            Assert.Equal(2,lstnews.Count);
+            Assert.Equal(1,lstnews.Count);
         }
 
-        [Fact, TestPriority(3)]
+        [Fact, TestPriority(5)]
         public async Task DeleteShouldSuccess()
         {
             string userId = "Jack";
-            int newsId = 102;
+            int newsId = 101;
             // The endpoint or route of the controller action.
             var httpResponse = await _client.DeleteAsync($"/api/news/{userId}/{newsId}");
 
@@ -69,7 +69,7 @@ namespace Test.ControllerTests.IntegrationTest
             Assert.True(Convert.ToBoolean(stringResponse));
         }
 
-        [Fact, TestPriority(4)]
+        [Fact, TestPriority(6)]
         public async Task PostShouldReturnConflict()
         {
             string userId = "Jack";
@@ -85,7 +85,7 @@ namespace Test.ControllerTests.IntegrationTest
             Assert.Equal($"{userId} have already added this news", stringResponse);
         }
 
-        [Fact, TestPriority(5)]
+        [Fact, TestPriority(7)]
         public async Task GetByUserIdShouldReturnNotFound()
         {
             // The endpoint or route of the controller action.
@@ -98,7 +98,7 @@ namespace Test.ControllerTests.IntegrationTest
             Assert.Equal($"No news found for {userId}", stringResponse);
         }
 
-        [Fact, TestPriority(6)]
+        [Fact, TestPriority(8)]
         public async Task DeleteShouldReturnNotFound()
         {
             string userId = "Jack";
@@ -112,7 +112,7 @@ namespace Test.ControllerTests.IntegrationTest
             Assert.Equal($"NewsId {newsId} for {userId} doesn't exist", stringResponse);
         }
 
-        [Fact, TestPriority(9)]
+        [Fact, TestPriority(3)]
         public async Task PutReminderShouldReturnTrue()
         {
             string userId = "Jack";
@@ -131,7 +131,7 @@ namespace Test.ControllerTests.IntegrationTest
             Assert.True(Convert.ToBoolean(stringResponse));
         }
 
-        [Fact, TestPriority(10)]
+        [Fact, TestPriority(4)]
         public async Task DeleteReminderShouldReturnTrue()
         {
             string userId = "Jack";

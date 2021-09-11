@@ -17,7 +17,7 @@ namespace Test.InfraSetup
             configuration = builder.Build();
             context = new ReminderContext(configuration);
             context.Reminders.DeleteMany(Builders<Reminder>.Filter.Empty);
-            context.Reminders.InsertMany(new List<Reminder>
+            context.Reminders.InsertMany(new List<Reminder>()
             {
                 new Reminder{ 
                     UserId="Jack",

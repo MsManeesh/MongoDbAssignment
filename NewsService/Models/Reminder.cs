@@ -7,6 +7,7 @@ namespace NewsService.Models
         /*
        * This class should have a property called Schedule which returns DateTime data type
        */
-       
+        public DateTime Schedule { get; set; }
+
     }
 }

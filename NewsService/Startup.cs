@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Options;
 using NewsService.Models;
 using NewsService.Repository;
 using NewsService.Services;
@@ -21,6 +22,15 @@ namespace NewsService
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+            services.AddSingleton(new NewsContext(Configuration));
+            services.AddScoped<INewsRepository, NewsRepository>();
+            services.AddScoped<INewsService, Services.NewsService>();
+            //    services.Configure<NewsServiceDatabaseSettings>(
+            //Configuration.GetSection(nameof(NewsServiceDatabaseSettings)));
+
+            //    services.AddSingleton<INewsServiceDatabaseSettings>(sp =>
+            //        sp.GetRequiredService<IOptions<NewsServiceDatabaseSettings>>().Value);
+
             //provide options for Database Context to Register Dependencies
             //Register all dependencies here
         }

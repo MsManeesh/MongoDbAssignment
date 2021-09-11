@@ -16,5 +16,12 @@ namespace UserService.Models
       * Email property returns a string data type
       * CreatedAt property returns a DateTime data type
       */
+        [BsonId]
+        public string UserId { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public string Contact { get; set; }
+        public string Email { get; set; }
+        public DateTime CreatedAt { get; set; }
     }
 }
