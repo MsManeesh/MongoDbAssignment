@@ -19,8 +19,8 @@ namespace Test.InfraSetup
             context.News.DeleteMany(Builders<UserNews>.Filter.Empty);
             context.News.InsertMany(new List<UserNews>()
             {
-                new UserNews{ UserId="Sam", NewsList=new List<News>{
-                    new News{ NewsId=101, Title = "IT industry in 2020", Content = "It is expected to have positive growth in 2020.", PublishedAt = DateTime.Now, UrlToImage = null,Url=null }
+                new UserNews{ UserId="Sam", NewsList=new List<News>(){
+                    new News(){ NewsId=101, Title = "IT industry in 2020", Content = "It is expected to have positive growth in 2020.", PublishedAt = DateTime.Now, UrlToImage = null,Url=null }
                 }}
             });
         }
